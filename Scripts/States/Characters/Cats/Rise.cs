@@ -1,10 +1,8 @@
 using Godot;
 using System;
 
-public partial class Idle : BaseAnimatedSpriteState
+public partial class Rise : BaseAnimatedSpriteState
 {
-	//[Export] private Vector2 
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		base._Ready();
@@ -17,8 +15,8 @@ public partial class Idle : BaseAnimatedSpriteState
 	
 	public override async void Enter()
 	{
-		GD.Print("Entering Idle State");
-		_animatedSprite.Play("Idle");
+		GD.Print("Entering Grab State");
+		_animatedSprite.Play("Rise");
 		//await ToSignal(GetTree().CreateTimer(5), "timeout");
 		//_stateMachine.ChangeState("Run");
 	}
@@ -27,6 +25,4 @@ public partial class Idle : BaseAnimatedSpriteState
 	{
 		GD.Print("Exiting Idle State");
 	}
-	
-	
 }

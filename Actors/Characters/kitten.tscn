@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://berd21nsv6aow"]
+
+[ext_resource type="Script" path="res://Scripts/Characters/Kittens/kitten.cs" id="1_t8vu0"]
+[ext_resource type="SpriteFrames" uid="uid://xtom33ymqvol" path="res://Assets/Sprites/Characters/Cats/SF_Kitten.tres" id="2_ibmpj"]
+[ext_resource type="Script" path="res://Scripts/Patterns/StateMachine.cs" id="2_ml1cf"]
+[ext_resource type="Script" path="res://Scripts/States/Characters/Cats/Idle.cs" id="3_322jy"]
+[ext_resource type="Script" path="res://Scripts/States/Characters/Cats/Run.cs" id="4_77hc4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nqa5w"]
+size = Vector2(46.5, 49.5)
+
+[node name="Kitten" type="CharacterBody2D"]
+position = Vector2(156, 59)
+input_pickable = true
+script = ExtResource("1_t8vu0")
+
+[node name="CatSprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0.5, -21.5)
+scale = Vector2(2.84375, 2.84375)
+sprite_frames = ExtResource("2_ibmpj")
+animation = &"Rise"
+
+[node name="StateMachine" type="Node" parent="CatSprite"]
+script = ExtResource("2_ml1cf")
+InitialState = "Idle"
+
+[node name="Idle" type="Node" parent="CatSprite/StateMachine"]
+script = ExtResource("3_322jy")
+SpriteNodePath = "../../"
+
+[node name="Run" type="Node" parent="CatSprite/StateMachine"]
+script = ExtResource("4_77hc4")
+SpriteNodePath = "../../"
+
+[node name="KittenCols" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_nqa5w")

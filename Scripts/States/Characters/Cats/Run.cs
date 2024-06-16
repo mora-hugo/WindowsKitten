@@ -18,8 +18,8 @@ public partial class Run : BaseAnimatedSpriteState
 	{
 		GD.Print("Entering Run State");
 		_animatedSprite.Play("Run");
-		await ToSignal(GetTree().CreateTimer(2), "timeout");
-		_stateMachine.ChangeState("Idle");
+		//await ToSignal(GetTree().CreateTimer(2), "timeout");
+		//_stateMachine.ChangeState("Idle");
 	}
 	
 	public override async void Exit()
