@@ -16,6 +16,7 @@ public partial class GrabbableActor : RigidBody2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		base._Ready();
 		BaseGravityScale = GravityScale;
 		
 	}
@@ -23,7 +24,13 @@ public partial class GrabbableActor : RigidBody2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		base._Process(delta);
 		
+		
+	}
+
+	public override void _IntegrateForces(PhysicsDirectBodyState2D state)
+	{
 		if (bIsGrabbed)
 		{
 			if (Input.IsActionJustReleased("Interact"))
@@ -37,18 +44,19 @@ public partial class GrabbableActor : RigidBody2D
 					Vector2 v2Dc;
 					v2Dc.X = (float)Math.Clamp(v2D.X, MinXVelocityWhenUngrabbed, MaxXVelocityWhenUngrabbed);
 					v2Dc.Y = (float)Math.Clamp(v2D.Y, MinYVelocityWhenUngrabbed, MaxYVelocityWhenUngrabbed);
-					LinearVelocity = v2Dc;
+					state.LinearVelocity = v2Dc;
 				}
+				
+				CanSleep = true;
 				
 			}
 			else
 			{
 				GlobalPosition = GetGlobalMousePosition();
 			}
-			
 		}
 	}
-	
+
 	public override void _InputEvent(Viewport viewport, InputEvent @event, int shapeIdx)
 	{
 		base._Input(@event);
@@ -58,6 +66,7 @@ public partial class GrabbableActor : RigidBody2D
 			{
 				bIsGrabbed = true;
 				GravityScale = 0;
+				CanSleep = false;
 			}
 
 		}
