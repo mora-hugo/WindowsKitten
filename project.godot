@@ -11,9 +11,25 @@ config_version=5
 [application]
 
 config/name="WindowsKitten"
-run/main_scene="res://Scenes/GYMs/GYM_Lori.tscn"
+run/main_scene="res://Scenes/GYMs/GYM_HugoLEBG.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
+boot_splash/bg_color=Color(0, 0, 0, 0)
+boot_splash/show_image=false
+boot_splash/image="res://Assets/Backgrounds/transparent.png"
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/mode=3
+window/size/resizable=false
+window/size/borderless=true
+window/size/always_on_top=true
+window/size/transparent=true
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+window/per_pixel_transparency/allowed=true
 
 [dotnet]
 
@@ -23,3 +39,8 @@ project/assembly_name="WindowsKitten"
 
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+viewport/transparent_background=true

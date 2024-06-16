@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvxxcco2u0lym"]
+
+[ext_resource type="Script" path="res://Assets/Sprites/TransparentWindow.cs" id="1_lq01g"]
+
+[node name="GymHugoLebg" type="Node"]
+script = ExtResource("1_lq01g")
