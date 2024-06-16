@@ -1,19 +1,140 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvxxcco2u0lym"]
+[gd_scene load_steps=20 format=3 uid="uid://bvxxcco2u0lym"]
 
 [ext_resource type="Script" path="res://Scripts/Engine/TransparentWindow.cs" id="1_y2jp8"]
 [ext_resource type="Script" path="res://Scripts/Patterns/StateMachine.cs" id="2_0cx3y"]
 [ext_resource type="Script" path="res://Scripts/States/Characters/Cats/Idle.cs" id="3_odjgg"]
 [ext_resource type="Script" path="res://Scripts/States/Characters/Cats/Run.cs" id="4_1q4cs"]
+[ext_resource type="Texture2D" uid="uid://cyowa5jw37r8t" path="res://Assets/Sprites/Characters/Cats/Cat Sprite Sheet.png" id="5_bffl6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nqa5w"]
+size = Vector2(46.5, 49.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_txchp"]
+atlas = ExtResource("5_bffl6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1lp2"]
+atlas = ExtResource("5_bffl6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8qps"]
+atlas = ExtResource("5_bffl6")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qhlr"]
+atlas = ExtResource("5_bffl6")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3htem"]
+atlas = ExtResource("5_bffl6")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgqu4"]
+atlas = ExtResource("5_bffl6")
+region = Rect2(32, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbbta"]
+atlas = ExtResource("5_bffl6")
+region = Rect2(64, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34465"]
+atlas = ExtResource("5_bffl6")
+region = Rect2(96, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ld7m4"]
+atlas = ExtResource("5_bffl6")
+region = Rect2(128, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsdhp"]
+atlas = ExtResource("5_bffl6")
+region = Rect2(160, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fcxb"]
+atlas = ExtResource("5_bffl6")
+region = Rect2(192, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cuyxa"]
+atlas = ExtResource("5_bffl6")
+region = Rect2(224, 160, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ad48p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_txchp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y1lp2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h8qps")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qhlr")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3htem")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgqu4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gbbta")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34465")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ld7m4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vsdhp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5fcxb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cuyxa")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="GymHugoLebg" type="Node"]
 script = ExtResource("1_y2jp8")
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(156, 59)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0, 21)
+shape = SubResource("RectangleShape2D_nqa5w")
+
+[node name="CatSprite" type="AnimatedSprite2D" parent="CharacterBody2D"]
+texture_filter = 1
+scale = Vector2(2.84375, 2.84375)
+sprite_frames = SubResource("SpriteFrames_ad48p")
+animation = &"Run"
+
+[node name="StateMachine" type="Node" parent="CharacterBody2D/CatSprite"]
 script = ExtResource("2_0cx3y")
 InitialState = "Idle"
 
-[node name="Idle" type="Node" parent="StateMachine"]
+[node name="Idle" type="Node" parent="CharacterBody2D/CatSprite/StateMachine"]
 script = ExtResource("3_odjgg")
+SpriteNodePath = "../../"
 
-[node name="Run" type="Node" parent="StateMachine"]
+[node name="Run" type="Node" parent="CharacterBody2D/CatSprite/StateMachine"]
 script = ExtResource("4_1q4cs")
+SpriteNodePath = "../../"
