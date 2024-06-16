@@ -13,12 +13,13 @@ mass = 0.5
 physics_material_override = ExtResource("1_3ooo3")
 lock_rotation = true
 script = ExtResource("2_qia5q")
-RotationOffset = 0.0
+RotationOffset = 1.5
 
 [node name="BallSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = ExtResource("3_na03n")
 animation = &"Idle"
+speed_scale = 2.0
 
 [node name="BallCols" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_htym3")

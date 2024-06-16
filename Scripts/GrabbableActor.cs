@@ -4,8 +4,14 @@ using System;
 public partial class GrabbableActor : RigidBody2D
 {
 
-	private bool bIsGrabbed = false;
+	protected bool bIsGrabbed = false;
 	private float BaseGravityScale;
+	[Export] private bool bShouldUnGrabApplyVelocity = true;
+	[Export] private double MinXVelocityWhenUngrabbed = -500;
+	[Export] private double MaxXVelocityWhenUngrabbed = 500;
+	[Export] private double MinYVelocityWhenUngrabbed = -500;
+	[Export] private double MaxYVelocityWhenUngrabbed = 500;
+	
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -25,7 +31,15 @@ public partial class GrabbableActor : RigidBody2D
 				bIsGrabbed = false;
 				GravityScale = BaseGravityScale;
 
-				LinearVelocity = Input.GetLastMouseVelocity();
+				if (bShouldUnGrabApplyVelocity)
+				{
+					Vector2 v2D = Input.GetLastMouseVelocity();
+					Vector2 v2Dc;
+					v2Dc.X = (float)Math.Clamp(v2D.X, MinXVelocityWhenUngrabbed, MaxXVelocityWhenUngrabbed);
+					v2Dc.Y = (float)Math.Clamp(v2D.Y, MinYVelocityWhenUngrabbed, MaxYVelocityWhenUngrabbed);
+					LinearVelocity = v2Dc;
+				}
+				
 			}
 			else
 			{
@@ -47,5 +61,10 @@ public partial class GrabbableActor : RigidBody2D
 			}
 
 		}
+	}
+
+	public virtual void _OnGrab()
+	{
+		
 	}
 }

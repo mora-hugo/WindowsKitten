@@ -31,7 +31,9 @@ public partial class Ball : GrabbableActor
 		if (vLength>20)
 		{
 			Sprite.Play("Flying");
-			Sprite.GlobalRotation = (float)Math.Atan2(v_x, v_y) + RotationOffset;
+			Sprite.LookAt(GlobalPosition + LinearVelocity);
+			Sprite.Rotation += RotationOffset;
+
 		}
 		else if (vLength > 1)
 		{
@@ -41,9 +43,21 @@ public partial class Ball : GrabbableActor
 		else
 		{
 			Sprite.GlobalRotation = 0;
-			Sprite.Play("Idle");
+			if (bIsGrabbed)
+			{
+				Sprite.Play("SlowFly");
+			}
+			else
+			{
+				Sprite.Play("Idle");
+			}
+			
 		}
 		
 	}
-	
+
+	public override void _OnGrab()
+	{
+		base._OnGrab();
+	}
 }
