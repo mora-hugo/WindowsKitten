@@ -1,68 +1,21 @@
-[gd_scene load_steps=10 format=3 uid="uid://cg4io45m102y0"]
+[gd_scene load_steps=8 format=3 uid="uid://cg4io45m102y0"]
 
-[ext_resource type="Texture2D" uid="uid://bm5bv3jqwjlae" path="res://Assets/Sprites/Toys/Ball/Ball_fly.png" id="1_7f5mh"]
-[ext_resource type="Script" path="res://Scripts/Characters/Kittens/kitten.cs" id="2_446qm"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7xst6"]
-atlas = ExtResource("1_7f5mh")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c4dg1"]
-atlas = ExtResource("1_7f5mh")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p7o8r"]
-atlas = ExtResource("1_7f5mh")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eywx1"]
-atlas = ExtResource("1_7f5mh")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ukr8g"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7xst6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c4dg1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p7o8r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_eywx1")
-}],
-"loop": true,
-"name": &"FlyingBall",
-"speed": 10.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ps7x"]
-size = Vector2(18, 18)
+[ext_resource type="PhysicsMaterial" uid="uid://txfxkch4hcv3" path="res://Assets/Materials/Physics/PM_Ball.tres" id="1_ulu0a"]
+[ext_resource type="Script" path="res://Scripts/Props/Ball/Ball.cs" id="2_65848"]
+[ext_resource type="SpriteFrames" uid="uid://clpbjsba732an" path="res://Assets/Sprites/Toys/Ball/SF_Ball.tres" id="2_o1moc"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_r5kjk"]
-distance = 43.19
+distance = 59.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_htym3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b6x1b"]
+size = Vector2(21, 682)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3wijq"]
+size = Vector2(1177, 20)
 
 [node name="Node2D" type="Node2D"]
-
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-
-[node name="kitten" type="AnimatedSprite2D" parent="RigidBody2D"]
-position = Vector2(457, 231)
-sprite_frames = SubResource("SpriteFrames_ukr8g")
-animation = &"FlyingBall"
-script = ExtResource("2_446qm")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(457, 231)
-shape = SubResource("RectangleShape2D_0ps7x")
 
 [node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2(508, 463)
@@ -70,3 +23,38 @@ position = Vector2(508, 463)
 [node name="Cols" type="CollisionShape2D" parent="Ground"]
 position = Vector2(67, 233)
 shape = SubResource("WorldBoundaryShape2D_r5kjk")
+
+[node name="Ball" type="RigidBody2D" parent="."]
+position = Vector2(162.675, 112.8)
+input_pickable = true
+mass = 0.5
+physics_material_override = ExtResource("1_ulu0a")
+lock_rotation = true
+script = ExtResource("2_65848")
+RotationOffset = 0.0
+
+[node name="BallSprite" type="AnimatedSprite2D" parent="Ball"]
+texture_filter = 1
+sprite_frames = ExtResource("2_o1moc")
+animation = &"Idle"
+
+[node name="BallCols" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("CircleShape2D_htym3")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.5, 331)
+shape = SubResource("RectangleShape2D_b6x1b")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(1149, 329)
+shape = SubResource("RectangleShape2D_b6x1b")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(578.5, 0)
+shape = SubResource("RectangleShape2D_3wijq")
