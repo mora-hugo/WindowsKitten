@@ -1,13 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cg4io45m102y0"]
+[gd_scene load_steps=5 format=3 uid="uid://cg4io45m102y0"]
 
-[ext_resource type="PhysicsMaterial" uid="uid://txfxkch4hcv3" path="res://Assets/Materials/Physics/PM_Ball.tres" id="1_ulu0a"]
-[ext_resource type="Script" path="res://Scripts/Props/Ball/Ball.cs" id="2_65848"]
-[ext_resource type="SpriteFrames" uid="uid://clpbjsba732an" path="res://Assets/Sprites/Toys/Ball/SF_Ball.tres" id="2_o1moc"]
+[ext_resource type="PackedScene" uid="uid://bdfo44vldoqjv" path="res://Actors/Toys/ball.tscn" id="1_mtj5j"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_r5kjk"]
 distance = 59.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_htym3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b6x1b"]
 size = Vector2(21, 682)
@@ -24,22 +20,7 @@ position = Vector2(508, 463)
 position = Vector2(67, 233)
 shape = SubResource("WorldBoundaryShape2D_r5kjk")
 
-[node name="Ball" type="RigidBody2D" parent="."]
-position = Vector2(162.675, 112.8)
-input_pickable = true
-mass = 0.5
-physics_material_override = ExtResource("1_ulu0a")
-lock_rotation = true
-script = ExtResource("2_65848")
-RotationOffset = 0.0
-
-[node name="BallSprite" type="AnimatedSprite2D" parent="Ball"]
-texture_filter = 1
-sprite_frames = ExtResource("2_o1moc")
-animation = &"Idle"
-
-[node name="BallCols" type="CollisionShape2D" parent="Ball"]
-shape = SubResource("CircleShape2D_htym3")
+[node name="Ball" parent="." instance=ExtResource("1_mtj5j")]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

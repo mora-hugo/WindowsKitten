@@ -40,11 +40,6 @@ project/assembly_name="WindowsKitten"
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
-[rendering]
-
-renderer/rendering_method="gl_compatibility"
-viewport/transparent_background=true
-
 [input]
 
 Interact={
@@ -53,3 +48,7 @@ Interact={
 ]
 }
 
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+viewport/transparent_background=true

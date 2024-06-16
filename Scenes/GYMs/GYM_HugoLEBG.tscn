@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://bvxxcco2u0lym"]
+[gd_scene load_steps=22 format=3 uid="uid://bvxxcco2u0lym"]
 
 [ext_resource type="Script" path="res://Scripts/Engine/TransparentWindow.cs" id="1_cg1xy"]
 [ext_resource type="Script" path="res://Scripts/Patterns/StateMachine.cs" id="2_0cx3y"]
 [ext_resource type="Script" path="res://Scripts/States/Characters/Cats/Idle.cs" id="3_odjgg"]
 [ext_resource type="Script" path="res://Scripts/States/Characters/Cats/Run.cs" id="4_1q4cs"]
 [ext_resource type="Texture2D" uid="uid://cyowa5jw37r8t" path="res://Assets/Sprites/Characters/Cats/Cat Sprite Sheet.png" id="5_bffl6"]
+[ext_resource type="PackedScene" uid="uid://bdfo44vldoqjv" path="res://Actors/Toys/ball.tscn" id="6_1dvdp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nqa5w"]
 size = Vector2(46.5, 49.5)
@@ -111,6 +112,8 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vsn8u"]
+
 [node name="GymHugoLebg" type="Node"]
 script = ExtResource("1_cg1xy")
 
@@ -138,3 +141,12 @@ SpriteNodePath = "../../"
 [node name="Run" type="Node" parent="CharacterBody2D/CatSprite/StateMachine"]
 script = ExtResource("4_1q4cs")
 SpriteNodePath = "../../"
+
+[node name="Ball" parent="." instance=ExtResource("6_1dvdp")]
+position = Vector2(542.675, 498.8)
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(632, 716)
+shape = SubResource("WorldBoundaryShape2D_vsn8u")
