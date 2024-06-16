@@ -1,6 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvxxcco2u0lym"]
+[gd_scene load_steps=5 format=3 uid="uid://bvxxcco2u0lym"]
 
-[ext_resource type="Script" path="res://Assets/Sprites/TransparentWindow.cs" id="1_lq01g"]
+[ext_resource type="Script" path="res://Scripts/Engine/TransparentWindow.cs" id="1_y2jp8"]
+[ext_resource type="Script" path="res://Scripts/Patterns/StateMachine.cs" id="2_0cx3y"]
+[ext_resource type="Script" path="res://Scripts/States/Characters/Cats/Idle.cs" id="3_odjgg"]
+[ext_resource type="Script" path="res://Scripts/States/Characters/Cats/Run.cs" id="4_1q4cs"]
 
 [node name="GymHugoLebg" type="Node"]
-script = ExtResource("1_lq01g")
+script = ExtResource("1_y2jp8")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_0cx3y")
+InitialState = "Idle"
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_odjgg")
+
+[node name="Run" type="Node" parent="StateMachine"]
+script = ExtResource("4_1q4cs")
