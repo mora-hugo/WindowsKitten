@@ -35,6 +35,7 @@ public partial class AutoAnimatedState : BaseAnimatedSpriteState
 	public override async void Exit()
 	{
 		_animatedSprite.AnimationFinished -= OnAnimationFinished;
+		
 	}
 	
 

@@ -13,6 +13,7 @@ config_version=5
 config/name="WindowsKitten"
 run/main_scene="res://Scenes/GYMs/GYM_HugoLEBG.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
+run/max_fps=60
 boot_splash/bg_color=Color(0, 0, 0, 0)
 boot_splash/show_image=false
 boot_splash/image="res://Assets/Backgrounds/transparent.png"
