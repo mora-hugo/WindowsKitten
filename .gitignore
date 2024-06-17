@@ -1,6 +1,9 @@
 # Godot 4+ specific ignores
 .godot/
 export_presets.cfg
-.idea/.idea.WindowsKitten/.idea/workspace.xml
-.idea/.idea.WindowsKitten/.idea/projectSettingsUpdater.xml
+.idea/*
+.idea/
 export_presets.cfg
+*.sln
+*.csproj
+
