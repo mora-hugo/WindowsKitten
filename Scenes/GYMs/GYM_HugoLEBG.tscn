@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bvxxcco2u0lym"]
+[gd_scene load_steps=18 format=3 uid="uid://bvxxcco2u0lym"]
 
 [ext_resource type="Script" path="res://Scripts/Engine/TransparentWindow.cs" id="1_cg1xy"]
 [ext_resource type="PackedScene" uid="uid://berd21nsv6aow" path="res://Actors/Characters/kitten.tscn" id="3_kv8h3"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://8i34c5to52l3" path="res://Assets/Sprites/UI/ExitIcon.png" id="8_mcbxe"]
 [ext_resource type="Texture2D" uid="uid://c05atc1ajj6oa" path="res://Assets/Sprites/Toys/Ball/Ball.png" id="10_l5lqv"]
 [ext_resource type="Script" path="res://Scripts/UI/Shop/ShopItem.cs" id="10_wje8y"]
+[ext_resource type="Texture2D" uid="uid://dywvo1j2763y1" path="res://Assets/Sprites/Toys/Beds/bed.png" id="12_s6a2y"]
+[ext_resource type="PackedScene" uid="uid://4tdnmieq5x23" path="res://Actors/Toys/bed.tscn" id="13_gokjq"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iiekc"]
 normal = Vector2(0.00425528, 0.999991)
@@ -38,8 +40,6 @@ position = Vector2(670, 435)
 [node name="BaseFood" parent="." instance=ExtResource("4_mii0q")]
 position = Vector2(752, 319)
 physics_material_override = null
-ActorIcon = null
-Price = null
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -139,3 +139,9 @@ size_flags_vertical = 3
 script = ExtResource("10_wje8y")
 ObjectIcon = ExtResource("10_l5lqv")
 ObjectToSpawn = ExtResource("6_1dvdp")
+
+[node name="Node" type="Node" parent="MainMenu"]
+script = ExtResource("10_wje8y")
+ObjectIcon = ExtResource("12_s6a2y")
+ObjectPrice = 500
+ObjectToSpawn = ExtResource("13_gokjq")
