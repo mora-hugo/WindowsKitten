@@ -1,13 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://bvxxcco2u0lym"]
+[gd_scene load_steps=16 format=3 uid="uid://bvxxcco2u0lym"]
 
 [ext_resource type="Script" path="res://Scripts/Engine/TransparentWindow.cs" id="1_cg1xy"]
 [ext_resource type="PackedScene" uid="uid://berd21nsv6aow" path="res://Actors/Characters/kitten.tscn" id="3_kv8h3"]
 [ext_resource type="PackedScene" uid="uid://p03rlytpqrxl" path="res://Actors/Food/base_food.tscn" id="4_mii0q"]
 [ext_resource type="Script" path="res://Scripts/UI/Menus/MainMenu.cs" id="5_f3dvt"]
 [ext_resource type="PackedScene" uid="uid://bdfo44vldoqjv" path="res://Actors/Toys/ball.tscn" id="6_1dvdp"]
+[ext_resource type="Texture2D" uid="uid://bha2imrvtkohj" path="res://Assets/Sprites/Food/BaseFood/food1.png" id="6_33xtc"]
 [ext_resource type="Texture2D" uid="uid://brx7dd142gwrx" path="res://Assets/Sprites/UI/MenuIcon.png" id="6_k0oog"]
 [ext_resource type="Texture2D" uid="uid://c3no1urpeveau" path="res://Assets/Sprites/UI/MenuIcon_Hovered.png" id="7_hf6ak"]
 [ext_resource type="Texture2D" uid="uid://8i34c5to52l3" path="res://Assets/Sprites/UI/ExitIcon.png" id="8_mcbxe"]
+[ext_resource type="Texture2D" uid="uid://c05atc1ajj6oa" path="res://Assets/Sprites/Toys/Ball/Ball.png" id="10_l5lqv"]
+[ext_resource type="Script" path="res://Scripts/UI/Shop/ShopItem.cs" id="10_wje8y"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iiekc"]
 normal = Vector2(0.00425528, 0.999991)
@@ -35,6 +38,8 @@ position = Vector2(670, 435)
 [node name="BaseFood" parent="." instance=ExtResource("4_mii0q")]
 position = Vector2(752, 319)
 physics_material_override = null
+ActorIcon = null
+Price = null
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -63,6 +68,7 @@ offset_top = -13.0
 grow_horizontal = 0
 grow_vertical = 0
 script = ExtResource("5_f3dvt")
+BaseFoodIcon = ExtResource("6_33xtc")
 
 [node name="OpenMenuBtn" type="TextureButton" parent="MainMenu"]
 layout_mode = 1
@@ -89,8 +95,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -111.0
-offset_top = -221.0
+offset_left = -207.0
+offset_top = -322.0
 offset_right = -1.0
 offset_bottom = -26.0
 grow_horizontal = 0
@@ -109,3 +115,27 @@ grow_horizontal = 0
 grow_vertical = 0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("8_mcbxe")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MainMenu/MenuPanel"]
+layout_direction = 3
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -188.0
+grow_horizontal = 0
+grow_vertical = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 2
+
+[node name="ShopContainer" type="VBoxContainer" parent="MainMenu/MenuPanel/ScrollContainer"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BallShopItem" type="Node" parent="MainMenu"]
+script = ExtResource("10_wje8y")
+ObjectIcon = ExtResource("10_l5lqv")
+ObjectToSpawn = ExtResource("6_1dvdp")
