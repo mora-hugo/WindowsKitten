@@ -47,7 +47,7 @@ AnimationChance = 0.25
 script = ExtResource("5_uvmiy")
 SpriteNodePath = "../../"
 
-[node name="Node" type="Node" parent="CatSprite/StateMachine/Fall"]
+[node name="Anim_Fall" type="Node" parent="CatSprite/StateMachine/Fall"]
 script = ExtResource("5_h7ksv")
 AnimationName = "Fall"
 AnimationChance = 1.0
