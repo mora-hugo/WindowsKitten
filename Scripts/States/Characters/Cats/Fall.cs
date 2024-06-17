@@ -17,6 +17,18 @@ public partial class Fall : AutoAnimatedState
 		// EndPlay() like method
 		TreeExiting += OnTreeExit;
 	}
+	
+	public override void Enter()
+	{
+		base.Enter();
+		_kitten.OnIsOnGroundUpdate += OnIsOnGroundUpdated;
+
+	}
+	public override void Exit()
+	{
+		base.Exit();
+		_kitten.OnIsOnGroundUpdate -= OnIsOnGroundUpdated;
+	}
 
 	private void OnTreeExit()
 	{
@@ -29,6 +41,14 @@ public partial class Fall : AutoAnimatedState
 		if (!bIsGrab)
 		{
 			_stateMachine.ChangeState("Fall");
+		}
+	}
+	
+	private void OnIsOnGroundUpdated(bool bIsOnGround)
+	{
+		if (bIsOnGround)
+		{
+			_stateMachine.ChangeState("Idle");
 		}
 	}
 }

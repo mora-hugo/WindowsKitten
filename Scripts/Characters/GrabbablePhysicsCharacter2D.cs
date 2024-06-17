@@ -63,7 +63,6 @@ public partial class GrabbablePhysicsCharacter2D : PhysicsCharacter2D
 			if (MouseBtnEvent.IsPressed())
 			{
 				bIsGrabbed = true;
-				GD.Print("Grabbed");
 				EmitSignal(SignalName.OnGrabStateChange, bIsGrabbed);
 				GravityScale = 0;
 			}
