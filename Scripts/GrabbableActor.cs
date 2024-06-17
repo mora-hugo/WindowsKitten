@@ -18,7 +18,6 @@ public partial class GrabbableActor : RigidBody2D
 	{
 		base._Ready();
 		BaseGravityScale = GravityScale;
-		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

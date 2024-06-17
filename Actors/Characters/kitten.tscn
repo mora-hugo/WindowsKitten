@@ -28,35 +28,42 @@ script = ExtResource("2_ml1cf")
 InitialState = "Idle"
 
 [node name="Idle" type="Node" parent="CatSprite/StateMachine"]
+process_mode = 4
 script = ExtResource("3_322jy")
 SpriteNodePath = "../../"
 
 [node name="Anim_Idle1" type="Node" parent="CatSprite/StateMachine/Idle"]
+process_mode = 4
 script = ExtResource("5_h7ksv")
 AnimationName = "Idle"
 AnimationNumber = 3
 AnimationChance = 0.75
 
 [node name="Anim_Idle2" type="Node" parent="CatSprite/StateMachine/Idle"]
+process_mode = 4
 script = ExtResource("5_h7ksv")
 AnimationName = "Idle1"
 AnimationNumber = 3
 AnimationChance = 0.25
 
 [node name="Fall" type="Node" parent="CatSprite/StateMachine"]
+process_mode = 4
 script = ExtResource("5_uvmiy")
 SpriteNodePath = "../../"
 
 [node name="Anim_Fall" type="Node" parent="CatSprite/StateMachine/Fall"]
+process_mode = 4
 script = ExtResource("5_h7ksv")
 AnimationName = "Fall"
 AnimationChance = 1.0
 
 [node name="Grab" type="Node" parent="CatSprite/StateMachine"]
+process_mode = 4
 script = ExtResource("6_hvrw6")
 SpriteNodePath = "../../"
 
 [node name="Anim_Grab" type="Node" parent="CatSprite/StateMachine/Grab"]
+process_mode = 4
 script = ExtResource("5_h7ksv")
 AnimationName = "Grab"
 AnimationChance = 1.0

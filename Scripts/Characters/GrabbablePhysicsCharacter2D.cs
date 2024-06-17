@@ -25,35 +25,43 @@ public partial class GrabbablePhysicsCharacter2D : PhysicsCharacter2D
 		
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
-		base._Process(delta);
+		base._PhysicsProcess(delta);
+
 		if (bIsGrabbed)
 		{
-			if (Input.IsActionJustReleased("Interact"))
-			{
-				bIsGrabbed = false;
-				EmitSignal(SignalName.OnGrabStateChange, bIsGrabbed);
-				GravityScale = BaseGravityScale;
-
-				if (bShouldUnGrabApplyVelocity)
-				{
-					Vector2 v2D = Input.GetLastMouseVelocity();
-					Vector2 v2Dc;
-					v2Dc.X = (float)Math.Clamp(v2D.X, MinXVelocityWhenUngrabbed, MaxXVelocityWhenUngrabbed);
-					v2Dc.Y = (float)Math.Clamp(v2D.Y, MinYVelocityWhenUngrabbed, MaxYVelocityWhenUngrabbed);
-					Velocity = v2Dc;
-				}
-				
-			}
-			else
-			{
-				GlobalPosition = GetGlobalMousePosition();
-			}
-			
+			GlobalPosition = GetGlobalMousePosition();
 		}
 	}
+
+	public override void _UnhandledInput(InputEvent @event)
+	{
+		base._UnhandledInput(@event);
+		if (@event is InputEventMouseButton keyEvent)
+		{
+			if (keyEvent.IsAction("Interact") && keyEvent.IsReleased()) 
+			{
+				if (bIsGrabbed)
+				{
+					bIsGrabbed = false;
+					EmitSignal(SignalName.OnGrabStateChange, bIsGrabbed);
+					GravityScale = BaseGravityScale;
+
+					if (bShouldUnGrabApplyVelocity)
+					{
+						Vector2 v2D = Input.GetLastMouseVelocity();
+						Vector2 v2Dc;
+						v2Dc.X = (float)Math.Clamp(v2D.X, MinXVelocityWhenUngrabbed, MaxXVelocityWhenUngrabbed);
+						v2Dc.Y = (float)Math.Clamp(v2D.Y, MinYVelocityWhenUngrabbed, MaxYVelocityWhenUngrabbed);
+						Velocity = v2Dc;
+					}
+				}
+			}
+		}
+	}
+	
+	
 	
 	public override void _InputEvent(Viewport viewport, InputEvent @event, int shapeIdx)
 	{

@@ -80,8 +80,6 @@ public partial class MainMenu : Control
 			ShopContainer.AddChild(ItemContainer);
 
 		}
-		
-		
 
 	}
 
@@ -89,12 +87,6 @@ public partial class MainMenu : Control
 	{
 		Node NewObject = value.Instantiate();
 		GetNode<Node>("../").AddChild(NewObject);
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-		
 	}
 
 	private void OnCloseMenuPressed()

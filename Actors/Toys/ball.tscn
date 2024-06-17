@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bdfo44vldoqjv"]
+[gd_scene load_steps=5 format=3 uid="uid://bdfo44vldoqjv"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://txfxkch4hcv3" path="res://Assets/Materials/Physics/PM_Ball.tres" id="1_3ooo3"]
 [ext_resource type="Script" path="res://Scripts/Props/Ball/Ball.cs" id="2_qia5q"]
-[ext_resource type="Texture2D" uid="uid://c05atc1ajj6oa" path="res://Assets/Sprites/Toys/Ball/Ball.png" id="3_fhomh"]
 [ext_resource type="SpriteFrames" uid="uid://clpbjsba732an" path="res://Assets/Sprites/Toys/Ball/SF_Ball.tres" id="3_na03n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_htym3"]
@@ -15,7 +14,6 @@ physics_material_override = ExtResource("1_3ooo3")
 lock_rotation = true
 script = ExtResource("2_qia5q")
 RotationOffset = 1.5
-ActorIcon = ExtResource("3_fhomh")
 
 [node name="BallSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
