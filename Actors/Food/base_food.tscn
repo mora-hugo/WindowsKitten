@@ -4,12 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://bha2imrvtkohj" path="res://Assets/Sprites/Food/BaseFood/food1.png" id="1_iis2v"]
 [ext_resource type="Script" path="res://Scripts/Props/Food/BaseFood/BaseFood.cs" id="2_14rt2"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hockp"]
-size = Vector2(16, 17)
+[sub_resource type="CircleShape2D" id="CircleShape2D_jocdr"]
 
 [node name="BaseFood" type="RigidBody2D"]
 position = Vector2(619, 263)
 input_pickable = true
+mass = 0.1
 physics_material_override = ExtResource("1_63d1c")
 lock_rotation = true
 script = ExtResource("2_14rt2")
@@ -19,4 +19,4 @@ texture_filter = 1
 texture = ExtResource("1_iis2v")
 
 [node name="FoodCol" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_hockp")
+shape = SubResource("CircleShape2D_jocdr")
