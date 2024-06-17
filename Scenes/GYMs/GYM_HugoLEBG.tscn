@@ -30,30 +30,15 @@ script = ExtResource("1_cg1xy")
 
 [node name="Ball" parent="." instance=ExtResource("6_1dvdp")]
 position = Vector2(542.675, 498.8)
-bShouldUnGrabApplyVelocity = null
-MinXVelocityWhenUngrabbed = null
-MaxXVelocityWhenUngrabbed = null
-MinYVelocityWhenUngrabbed = null
-MaxYVelocityWhenUngrabbed = null
 
 [node name="Ball2" parent="." instance=ExtResource("6_1dvdp")]
 position = Vector2(670, 435)
-bShouldUnGrabApplyVelocity = null
-MinXVelocityWhenUngrabbed = null
-MaxXVelocityWhenUngrabbed = null
-MinYVelocityWhenUngrabbed = null
-MaxYVelocityWhenUngrabbed = null
 
 [node name="Kitten" parent="." instance=ExtResource("3_kv8h3")]
 
 [node name="BaseFood" parent="." instance=ExtResource("4_mii0q")]
 position = Vector2(752, 319)
 physics_material_override = null
-bShouldUnGrabApplyVelocity = null
-MinXVelocityWhenUngrabbed = null
-MaxXVelocityWhenUngrabbed = null
-MinYVelocityWhenUngrabbed = null
-MaxYVelocityWhenUngrabbed = null
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
