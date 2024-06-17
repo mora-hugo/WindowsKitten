@@ -5,6 +5,11 @@ public partial class State : Node
 {
 	protected StateMachine _stateMachine;
 	
+	public State()
+	{
+		SetProcess(false);
+	}
+	
 	public void SetStateMachine(StateMachine stateMachine)
 	{
 		_stateMachine = stateMachine;
@@ -14,6 +19,10 @@ public partial class State : Node
 	}
 	
 	public virtual async void Exit()
+	{
+	}
+	
+	public virtual void StateProcess(double delta)
 	{
 	}
 }

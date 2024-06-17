@@ -53,10 +53,6 @@ Menu={
 ]
 }
 
-[physics]
-
-common/physics_ticks_per_second=30
-
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

@@ -1,28 +1,40 @@
 using Godot;
 using System;
 
-public partial class Grab : BaseAnimatedSpriteState
+public partial class Grab : AutoAnimatedState
 {
+	kitten _kitten;
+    
 	public override void _Ready()
 	{
 		base._Ready();
+		_kitten = (kitten)Owner;
+		if (_kitten == null)
+		{
+			GD.Print("Idle: _kitten is null");
+		}
+		
+		//We bind the delegate here because the state can be reach from any other state
+		_kitten.OnGrabStateChange += OnGrabStateChange;
+		
+		// EndPlay() like method
+		TreeExiting += OnTreeExit;
+	}
+	private void OnTreeExit()
+	{
+	}
+	
+	private	void OnGrabStateChange(bool bIsGrab)
+	{
+		if (bIsGrab)
+		{
+			_stateMachine.ChangeState("Grab");
+		}
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+	public override void Exit()
 	{
-	}
-	
-	public override async void Enter()
-	{
-		GD.Print("Entering Grab State");
-		_animatedSprite.Play("Grab");
-		//await ToSignal(GetTree().CreateTimer(5), "timeout");
-		//_stateMachine.ChangeState("Run");
-	}
-	
-	public override async void Exit()
-	{
-		GD.Print("Exiting Idle State");
+		base.Exit();
+		
 	}
 }

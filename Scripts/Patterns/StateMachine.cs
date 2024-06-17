@@ -41,5 +41,12 @@ public partial class StateMachine : Node
 		
 	}
 
+	public override void _Process(double delta)
+	{
+		if (_currentState != null)
+		{
+			_currentState.StateProcess(delta);
+		}
+	}
 	
 }

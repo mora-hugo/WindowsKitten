@@ -11,6 +11,11 @@ public partial class GrabbablePhysicsCharacter2D : PhysicsCharacter2D
 	[Export] private double MinYVelocityWhenUngrabbed = -500;
 	[Export] private double MaxYVelocityWhenUngrabbed = 500;
 	
+	// Signals
+	[Signal]
+	public delegate void OnGrabStateChangeEventHandler(bool bIsGrabbed);
+	
+	
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -29,6 +34,7 @@ public partial class GrabbablePhysicsCharacter2D : PhysicsCharacter2D
 			if (Input.IsActionJustReleased("Interact"))
 			{
 				bIsGrabbed = false;
+				EmitSignal(SignalName.OnGrabStateChange, bIsGrabbed);
 				GravityScale = BaseGravityScale;
 
 				if (bShouldUnGrabApplyVelocity)
@@ -57,6 +63,8 @@ public partial class GrabbablePhysicsCharacter2D : PhysicsCharacter2D
 			if (MouseBtnEvent.IsPressed())
 			{
 				bIsGrabbed = true;
+				GD.Print("Grabbed");
+				EmitSignal(SignalName.OnGrabStateChange, bIsGrabbed);
 				GravityScale = 0;
 			}
 

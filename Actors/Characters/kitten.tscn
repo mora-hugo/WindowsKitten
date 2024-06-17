@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://berd21nsv6aow"]
+[gd_scene load_steps=9 format=3 uid="uid://berd21nsv6aow"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/Kittens/kitten.cs" id="1_t8vu0"]
 [ext_resource type="SpriteFrames" uid="uid://xtom33ymqvol" path="res://Assets/Sprites/Characters/Cats/SF_Kitten.tres" id="2_ibmpj"]
 [ext_resource type="Script" path="res://Scripts/Patterns/StateMachine.cs" id="2_ml1cf"]
 [ext_resource type="Script" path="res://Scripts/States/Characters/Cats/Idle.cs" id="3_322jy"]
-[ext_resource type="Script" path="res://Scripts/States/Characters/Cats/Run.cs" id="4_77hc4"]
+[ext_resource type="Script" path="res://Scripts/States/Characters/StateAnim.cs" id="5_h7ksv"]
+[ext_resource type="Script" path="res://Scripts/States/Characters/Cats/Fall.cs" id="5_uvmiy"]
+[ext_resource type="Script" path="res://Scripts/States/Characters/Cats/Grab.cs" id="6_hvrw6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nqa5w"]
 size = Vector2(46.5, 49.5)
@@ -19,7 +21,7 @@ texture_filter = 1
 position = Vector2(0.5, -21.5)
 scale = Vector2(2.84375, 2.84375)
 sprite_frames = ExtResource("2_ibmpj")
-animation = &"Rise"
+animation = &"Fall"
 
 [node name="StateMachine" type="Node" parent="CatSprite"]
 script = ExtResource("2_ml1cf")
@@ -29,9 +31,35 @@ InitialState = "Idle"
 script = ExtResource("3_322jy")
 SpriteNodePath = "../../"
 
-[node name="Run" type="Node" parent="CatSprite/StateMachine"]
-script = ExtResource("4_77hc4")
+[node name="Anim_Idle1" type="Node" parent="CatSprite/StateMachine/Idle"]
+script = ExtResource("5_h7ksv")
+AnimationName = "Idle"
+AnimationNumber = 3
+AnimationChance = 0.75
+
+[node name="Anim_Idle2" type="Node" parent="CatSprite/StateMachine/Idle"]
+script = ExtResource("5_h7ksv")
+AnimationName = "Idle1"
+AnimationNumber = 3
+AnimationChance = 0.25
+
+[node name="Fall" type="Node" parent="CatSprite/StateMachine"]
+script = ExtResource("5_uvmiy")
 SpriteNodePath = "../../"
+
+[node name="Node" type="Node" parent="CatSprite/StateMachine/Fall"]
+script = ExtResource("5_h7ksv")
+AnimationName = "Fall"
+AnimationChance = 1.0
+
+[node name="Grab" type="Node" parent="CatSprite/StateMachine"]
+script = ExtResource("6_hvrw6")
+SpriteNodePath = "../../"
+
+[node name="Anim_Grab" type="Node" parent="CatSprite/StateMachine/Grab"]
+script = ExtResource("5_h7ksv")
+AnimationName = "Grab"
+AnimationChance = 1.0
 
 [node name="KittenCols" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -0.5)
