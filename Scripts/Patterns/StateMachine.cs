@@ -7,6 +7,11 @@ public partial class StateMachine : Node
 	State _currentState = null;
 	Dictionary<string, State> _states = new Dictionary<string, State>();
 	[Export] public String InitialState = "";
+	
+	// Signals
+	[Signal]
+	public delegate void OnStateChangedEventHandler(string stateName);
+	
 	public override void _Ready()
 	{
 		foreach (Node node in GetChildren())
@@ -33,6 +38,8 @@ public partial class StateMachine : Node
 			
 			_currentState = _states[stateName.ToLower()];
 			_currentState.Enter();
+			
+			EmitSignal(SignalName.OnStateChanged, stateName);
 		}
 		else
 		{

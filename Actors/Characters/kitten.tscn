@@ -1,12 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://berd21nsv6aow"]
+[gd_scene load_steps=11 format=3 uid="uid://berd21nsv6aow"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/Kittens/kitten.cs" id="1_t8vu0"]
 [ext_resource type="SpriteFrames" uid="uid://xtom33ymqvol" path="res://Assets/Sprites/Characters/Cats/SF_Kitten.tres" id="2_ibmpj"]
-[ext_resource type="Script" path="res://Scripts/Patterns/StateMachine.cs" id="2_ml1cf"]
+[ext_resource type="Script" path="res://Scripts/States/Characters/Cats/CatStateMachine.cs" id="3_281yl"]
 [ext_resource type="Script" path="res://Scripts/States/Characters/Cats/Idle.cs" id="3_322jy"]
 [ext_resource type="Script" path="res://Scripts/States/Characters/StateAnim.cs" id="5_h7ksv"]
 [ext_resource type="Script" path="res://Scripts/States/Characters/Cats/Fall.cs" id="5_uvmiy"]
 [ext_resource type="Script" path="res://Scripts/States/Characters/Cats/Grab.cs" id="6_hvrw6"]
+[ext_resource type="Script" path="res://Scripts/States/Characters/Cats/Run.cs" id="8_bnmh8"]
+[ext_resource type="Script" path="res://Scripts/States/Characters/Cats/Sleep.cs" id="9_xb0wa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nqa5w"]
 size = Vector2(26, 34.25)
@@ -23,14 +25,14 @@ texture_filter = 1
 position = Vector2(0.5, -21.5)
 scale = Vector2(2.84375, 2.84375)
 sprite_frames = ExtResource("2_ibmpj")
-animation = &"Idle"
+animation = &"Sleep"
 
 [node name="StateMachine" type="Node" parent="CatSprite"]
-script = ExtResource("2_ml1cf")
-InitialState = "Idle"
+script = ExtResource("3_281yl")
+InitialState = "Fall"
 
 [node name="Idle" type="Node" parent="CatSprite/StateMachine"]
-process_mode = 4
+process_mode = 1
 script = ExtResource("3_322jy")
 SpriteNodePath = "../../"
 
@@ -68,6 +70,28 @@ SpriteNodePath = "../../"
 process_mode = 4
 script = ExtResource("5_h7ksv")
 AnimationName = "Grab"
+AnimationChance = 1.0
+
+[node name="Run" type="Node" parent="CatSprite/StateMachine"]
+process_mode = 1
+script = ExtResource("8_bnmh8")
+SpriteNodePath = "../../"
+
+[node name="Anim_Run" type="Node" parent="CatSprite/StateMachine/Run"]
+process_mode = 4
+script = ExtResource("5_h7ksv")
+AnimationName = "Run"
+AnimationNumber = 7
+AnimationChance = 1.0
+
+[node name="Sleep" type="Node" parent="CatSprite/StateMachine"]
+script = ExtResource("9_xb0wa")
+SpriteNodePath = "../../"
+
+[node name="Anim_Sleep" type="Node" parent="CatSprite/StateMachine/Sleep"]
+script = ExtResource("5_h7ksv")
+AnimationName = "Sleep"
+AnimationNumber = 3
 AnimationChance = 1.0
 
 [node name="KittenCols" type="CollisionShape2D" parent="."]

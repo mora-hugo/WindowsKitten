@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://4tdnmieq5x23"]
 
-[ext_resource type="Script" path="res://Scripts/GrabbableActor.cs" id="1_fgqaj"]
+[ext_resource type="Script" path="res://Scripts/Props/Bed/Bed.cs" id="1_gbpk8"]
 [ext_resource type="Texture2D" uid="uid://qpwux6p1dbj5" path="res://Assets/Sprites/Toys/Beds/Layered_bed.png" id="2_yl67f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5i5ne"]
@@ -10,11 +10,7 @@ size = Vector2(9.66667, 1.5)
 position = Vector2(220, 126)
 input_pickable = true
 lock_rotation = true
-script = ExtResource("1_fgqaj")
-MinXVelocityWhenUngrabbed = -200.0
-MaxXVelocityWhenUngrabbed = 200.0
-MinYVelocityWhenUngrabbed = -200.0
-MaxYVelocityWhenUngrabbed = 200.0
+script = ExtResource("1_gbpk8")
 
 [node name="Back" type="Sprite2D" parent="."]
 texture_filter = 1

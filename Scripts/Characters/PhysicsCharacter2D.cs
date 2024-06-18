@@ -35,21 +35,25 @@ public partial class PhysicsCharacter2D : CharacterBody2D
 	}
 	public override void _PhysicsProcess(double delta)
 	{
-		Vector2 velocity = Velocity;
-		bool bNewIsOnGround = IsOnGround();
+		var velocity = Velocity;
+		
+		bool bNewIsOnGround = IsOnFloor();
 		if(bNewIsOnGround != isOnGround)
 		{
 			isOnGround = bNewIsOnGround;
 			EmitSignal(SignalName.OnIsOnGroundUpdate, isOnGround);
+			velocity.Y = 0;
+			velocity.X = 0;
 		}
-		
-		if (!isOnGround)
+		else
 		{
-			velocity.Y += gravity * GravityScale * (float)delta;
+			velocity.Y += (float)delta * gravity;
 		}
 
+		
+		
 		Velocity = velocity;
-		MoveAndCollide(Velocity*(float)delta);
+		MoveAndSlide();
 		
 	}
 }

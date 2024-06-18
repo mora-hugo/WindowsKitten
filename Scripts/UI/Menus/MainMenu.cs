@@ -86,7 +86,7 @@ public partial class MainMenu : Control
 	private void BuyBtnOnPressed(PackedScene value)
 	{
 		Node NewObject = value.Instantiate();
-		GetNode<Node>("../").AddChild(NewObject);
+		GetTree().Root.AddChild(NewObject);
 	}
 
 	private void OnCloseMenuPressed()

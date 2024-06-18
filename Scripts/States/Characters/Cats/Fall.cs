@@ -21,18 +21,17 @@ public partial class Fall : AutoAnimatedState
 	public override void Enter()
 	{
 		base.Enter();
-		_kitten.OnIsOnGroundUpdate += OnIsOnGroundUpdated;
+		
 
 	}
 	public override void Exit()
 	{
 		base.Exit();
-		_kitten.OnIsOnGroundUpdate -= OnIsOnGroundUpdated;
 	}
 
 	private void OnTreeExit()
 	{
-		_kitten.OnGrabStateChange -= OnGrabStateChange;
+		//_kitten.OnGrabStateChange -= OnGrabStateChange;
 	}
 	
 	
@@ -43,12 +42,24 @@ public partial class Fall : AutoAnimatedState
 			_stateMachine.ChangeState("Fall");
 		}
 	}
-	
-	private void OnIsOnGroundUpdated(bool bIsOnGround)
+
+	public override void StateProcess(double delta)
 	{
-		if (bIsOnGround)
+		base.StateProcess(delta);
+		if (_kitten.IsOnFloor())
 		{
-			_stateMachine.ChangeState("Idle");
+
+			if (_kitten.GetLastSlideCollision().GetCollider() is Bed bed)
+			{
+				_kitten.Reparent(bed);
+				_stateMachine.ChangeState("Sleep");
+			}
+			else
+			{
+				_stateMachine.ChangeState("Idle");
+			}
+			
+			
 		}
 	}
 }
