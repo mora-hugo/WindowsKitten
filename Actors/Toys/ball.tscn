@@ -5,8 +5,10 @@
 [ext_resource type="SpriteFrames" uid="uid://clpbjsba732an" path="res://Assets/Sprites/Toys/Ball/SF_Ball.tres" id="3_na03n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_htym3"]
+radius = 5.38476
 
 [node name="Ball" type="RigidBody2D"]
+z_index = 2
 position = Vector2(162.675, 112.8)
 input_pickable = true
 mass = 0.5
@@ -17,6 +19,7 @@ RotationOffset = 1.5
 
 [node name="BallSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+scale = Vector2(0.6, 0.6)
 sprite_frames = ExtResource("3_na03n")
 animation = &"Idle"
 speed_scale = 2.0
