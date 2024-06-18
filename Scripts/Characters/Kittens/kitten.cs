@@ -4,7 +4,7 @@ using System;
 public partial class kitten : GrabbablePhysicsCharacter2D
 {
 
-	private StateMachine StateMachine;
+	public AnimatedSprite2D CatSprite;
 
 	
 	
@@ -12,6 +12,8 @@ public partial class kitten : GrabbablePhysicsCharacter2D
 	public override void _Ready()
 	{
 		base._Ready();
+
+		CatSprite = GetNode<AnimatedSprite2D>("./CatSprite");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

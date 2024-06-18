@@ -1,19 +1,25 @@
 using Godot;
-using System;
+using static WindowsKitten.Scripts.Utils.Utils;
 
 public partial class Run : AutoAnimatedState
 {
-    private CharacterBody2D Owner;
+    kitten _kitten;
+    
+    private CharacterBody2D characterBody2D;
     
     private Timer MoveTimer;
+
+    private Vector2 Direction = Vector2.Right;
 
     [Export] private float RunSpeed = 13;
 
     public override void _Ready()
     {
         base._Ready();
+        
+        _kitten = (kitten)Owner;
 
-        Owner = GetNode<CharacterBody2D>("../../../");
+        characterBody2D = (CharacterBody2D)Owner;
 
         MoveTimer = new Timer();
         
@@ -33,9 +39,20 @@ public partial class Run : AutoAnimatedState
         base.Enter();
         
         SetProcess(true);
-        //Owner.MoveAndSlide();
+
+        Direction *= -1;
+
+        if (Direction == Vector2.Right)
+        {
+            _kitten.CatSprite.FlipH = false;
+        }
+        else
+        {
+            _kitten.CatSprite.FlipH = true;
+        }
         
-        MoveTimer.Start(5);
+        
+        MoveTimer.Start(GetRandomFloatInRange(2,10));
     }
 
     public override void Exit()
@@ -44,7 +61,7 @@ public partial class Run : AutoAnimatedState
         
         MoveTimer.Stop();
 
-        Owner.Velocity = Vector2.Zero;
+        characterBody2D.Velocity = Vector2.Zero;
         
         SetProcess(false);
     }
@@ -53,9 +70,9 @@ public partial class Run : AutoAnimatedState
     {
         base.StateProcess(delta);
         
-        Owner.Velocity = Vector2.Right * RunSpeed;
+        characterBody2D.Velocity = Direction * RunSpeed;
 
-        if (Owner.GetLastSlideCollision().GetAngle() > 0)
+        if (characterBody2D.GetLastSlideCollision().GetCollider() is RigidBody2D)
         {
             _stateMachine.ChangeState("Idle");
         }

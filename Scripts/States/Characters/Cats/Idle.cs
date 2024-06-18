@@ -1,5 +1,5 @@
 using Godot;
-using System;
+using static WindowsKitten.Scripts.Utils.Utils;
 
 public partial class Idle : AutoAnimatedState
 {
@@ -19,7 +19,7 @@ public partial class Idle : AutoAnimatedState
         
         SetProcess(true);
         
-        MovingToTimer.Start(5);
+        MovingToTimer.Start(GetRandomFloatInRange(5,15));
     }
 
     public override void Exit()
